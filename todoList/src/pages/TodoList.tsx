@@ -18,15 +18,28 @@ export default function TodoList() {
             isDone:false
         }
         setTodoList([newTodo, ...todoList]);
-        console.log(todoList);  
+        console.log(newTodo);  
     }
-
+    const deleteTodo = (targetId: number) => {
+        setTodoList(todoList.filter((todo)=> {
+            return todo.id !== targetId;
+        }));
+    }
+    const toggleTodo = (targetId: number) => {
+        setTodoList(todoList.map((todo)=> {
+            if (todo.id === targetId) {
+                return {...todo, isDone: !todo.isDone}
+            } else {
+                return todo;
+            }
+        }));
+    }
 
     return (
         <div>
             <TodoInput addTodo={addTodo}></TodoInput>
             {todoList.map((todo)=> (
-                <TodoItem key={todo.id} todo={todo}></TodoItem>
+                <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo}></TodoItem>
             ))}
         </div>
     )

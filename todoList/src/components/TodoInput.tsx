@@ -14,10 +14,8 @@ export default function TodoInput({ addTodo }: TodoInputProps) {
                 addTodo(inputText);
                 setInputText('');
             }
-
         }
     }
-
 
     return (
         <div>
